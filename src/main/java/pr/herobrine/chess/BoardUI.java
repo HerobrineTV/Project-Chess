@@ -71,7 +71,6 @@ public class BoardUI extends JFrame {
                                         if (jlabels.get(Moves[i2]) == jlabels.get(label.getName())) {
                                             CurrentSelectedPiece.move(fields.get(label.getName()), chessBoard, BoardUI);
                                             isThrowable = true;
-                                            CurrentSelectedPiece = null;
                                         }
                                     }
                                 }
@@ -128,6 +127,8 @@ public class BoardUI extends JFrame {
 
     public void updatePieceLocation(String oldField, String newField) {
         // Get the JLabels for the old and new fields
+        CurrentSelectedPiece = null;
+
         JLabel oldLabel = jlabels.get(oldField);
         JLabel newLabel = jlabels.get(newField);
 
@@ -138,7 +139,7 @@ public class BoardUI extends JFrame {
             newLabel.setIcon(oldLabel.getIcon());
             oldLabel.setIcon(null);
 
-            System.out.println("HELP");
+            //System.out.println("HELP");
         }
         setTitle("Board Game [Map: "+chessBoard.getBoardName()+"] [Turn: "+chessBoard.getTurnNumber()+"] "+chessBoard.getCurrentTurn()+"'s Turn!");
 

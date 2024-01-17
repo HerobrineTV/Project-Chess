@@ -21,11 +21,14 @@ public class ChessApplication {
 
 		wFigures.add("K:0_1");
 		wFigures.add("KN:0_2");
+		wFigures.add("P:0_3");
 
 		ArrayList<String> bFigures = new ArrayList<String>();
 
-		bFigures.add("K:7_1");
-		bFigures.add("KN:7_2");
+		bFigures.add("K:1_4");
+		bFigures.add("KN:2_4");
+		bFigures.add("P:4_3");
+		bFigures.add("KN:5_3");
 
 		Map<String, FieldSpace> Fields = chessBoard.InitFields();
 		Map<String, Piece> Pieces = chessBoard.InitFigures(wFigures, bFigures);

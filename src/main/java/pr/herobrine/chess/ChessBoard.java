@@ -7,6 +7,7 @@ import java.util.Map;
 
 import pr.herobrine.chess.Pieces.King;
 import pr.herobrine.chess.Pieces.Knight;
+import pr.herobrine.chess.Pieces.Pawn;
 
 public class ChessBoard {
     private boolean TestMode = false;
@@ -63,12 +64,19 @@ public class ChessBoard {
                 int posY = Integer.parseInt(splitString(whiteFigures.get(i))[2]);
                 King wKing = new King(posX, posY, "White_King_"+i, true, this, fields.get(posX+"_"+posY));
                 Figures.put(wKing.getName(), wKing);
+                whiteKingsLeft++;
             }
             else if (splitString(whiteFigures.get(i))[0].equals("KN")) {
                 int posX = Integer.parseInt(splitString(whiteFigures.get(i))[1]);
                 int posY = Integer.parseInt(splitString(whiteFigures.get(i))[2]);
                 Knight wKnight = new Knight(posX, posY, "White_Knight_"+i, true, this, fields.get(posX+"_"+posY));
                 Figures.put(wKnight.getName(), wKnight);
+            }
+            else if (splitString(whiteFigures.get(i))[0].equals("P")) {
+                int posX = Integer.parseInt(splitString(whiteFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(whiteFigures.get(i))[2]);
+                Pawn wPawn = new Pawn(posX, posY, "White_Pawn_"+i, true, this, fields.get(posX+"_"+posY));
+                Figures.put(wPawn.getName(), wPawn);
             }
         }
         whiteFiguresLeft = whiteFigures.size();
@@ -78,12 +86,19 @@ public class ChessBoard {
                 int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
                 King bKing = new King(posX, posY, "Black_King_"+i, false, this, fields.get(posX+"_"+posY));
                 Figures.put(bKing.getName(), bKing);
+                blackKingsLeft++;
             }
             else if (splitString(blackFigures.get(i))[0].equals("KN")) {
                 int posX = Integer.parseInt(splitString(blackFigures.get(i))[1]);
                 int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
                 Knight bKnight = new Knight(posX, posY, "Black_Knight_"+i, false, this, fields.get(posX+"_"+posY));
                 Figures.put(bKnight.getName(), bKnight);
+            }
+            else if (splitString(blackFigures.get(i))[0].equals("P")) {
+                int posX = Integer.parseInt(splitString(blackFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
+                Pawn bPawn = new Pawn(posX, posY, "Black_Pawn_"+i, false, this, fields.get(posX+"_"+posY));
+                Figures.put(bPawn.getName(), bPawn);
             }
         }
         blackFiguresLeft = blackFigures.size();

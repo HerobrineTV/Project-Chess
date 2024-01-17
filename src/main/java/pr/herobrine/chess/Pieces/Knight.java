@@ -89,8 +89,10 @@ public class Knight extends Piece {
                 isValidMove = false;
                 failReason = "Field is blocked by own Figure";
             } else {
-                System.out.println(this.name + " threw out " + Field.getCurrentPieceOnField().getName()+ " ["+this.locX + "," + this.locY+"]");
-                Field.getCurrentPieceOnField().ThrowOut();
+                if (isValidMove) {
+                    System.out.println(this.name + " threw out " + Field.getCurrentPieceOnField().getName()+ " ["+this.locX + "," + this.locY+"]");
+                    Field.getCurrentPieceOnField().ThrowOut();
+                }
             }
         } else {
 
