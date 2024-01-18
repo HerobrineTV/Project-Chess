@@ -78,8 +78,22 @@ public class Piece implements java.io.Serializable{
         return this.isKnight;
     }
 
+    public boolean isPawn() {
+        return this.isPawn;
+    }
+
     protected boolean isMovePossible(int x, int y, Map<String, FieldSpace> fields) {
         return !fields.get(x + "_" + y).isFieldBlocked() || fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite();
+    }
+
+    public boolean isOnTurn() {
+        if (chessBoard.getCurrentTurn() == "White" && this.isWhite) {
+            return true;
+        } else if (chessBoard.getCurrentTurn() == "Black" &&!this.isWhite) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 }

@@ -21,9 +21,9 @@ public class Knight extends Piece {
         this.currentField.setCurrentPieceOnField(this);
 
         if (isWhite == true) {
-            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/White_King.png"));
+            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/White_Knight.png"));
         } else {
-            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/Black_King.png"));
+            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/Black_Knight.png"));
         }
     }
 
