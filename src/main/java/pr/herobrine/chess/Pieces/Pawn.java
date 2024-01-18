@@ -32,23 +32,35 @@ public class Pawn extends Piece {
     public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard) {
         String[] PossibleMoves = new String[4];
         if (this.currentField != null) {
-            int direction = this.isWhite() ? 1 : -1; // White pawns move up (-1), black pawns move down (+1)
+            int direction = this.isWhite() ? -1 : 1; // White pawns move up (-1), black pawns move down (+1)
         
             // Forward move
-            if (this.locY + direction >= 0 && this.locY + direction < chessBoard.getSizeY() && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked()) {
+            if (this.locX + direction >= 0 && this.locX + direction <= chessBoard.getSizeX() 
+            && fields.get((this.locX + direction) + "_" + (this.locY)) != null 
+            && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked()) {
                 PossibleMoves[0] = (this.locX + direction) + "_" + (this.locY);
             }
         
             // Diagonal capture moves to the left and right
-            if (this.locX > 0 && this.locY + direction >= 0 && this.locY + direction < chessBoard.getSizeY() && fields.get((this.locX + direction) + "_" + (this.locY - 1)).isFieldBlocked() && fields.get((this.locX + direction) + "_" + (this.locY - 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
+            if (this.locX >= 0 && this.locX + direction >= 0 && this.locX + direction < chessBoard.getSizeX()  
+            && fields.get((this.locX + direction) + "_" + (this.locY - 1)) != null
+            && fields.get((this.locX + direction) + "_" + (this.locY - 1)).isFieldBlocked() 
+            && fields.get((this.locX + direction) + "_" + (this.locY - 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
                 PossibleMoves[1] = (this.locX + direction) + "_" + (this.locY - 1);
             }
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY + direction >= 0 && this.locY + direction < chessBoard.getSizeY() && fields.get((this.locX + direction) + "_" + (this.locY + 1)).isFieldBlocked() && fields.get((this.locX + direction) + "_" + (this.locY + 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
+            if (this.locX <= chessBoard.getSizeX() - 1 && this.locX + direction >= 0 && this.locX + direction < chessBoard.getSizeX() 
+            && fields.get((this.locX + direction) + "_" + (this.locY + 1)) != null
+            && fields.get((this.locX + direction) + "_" + (this.locY + 1)).isFieldBlocked() 
+            && fields.get((this.locX + direction) + "_" + (this.locY + 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
                 PossibleMoves[2] = (this.locX + direction) + "_" + (this.locY + 1);
             }
         
             // Two-square move from start position
-            if (this.locX == this.startRow && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked() && !fields.get((this.locX + 2 * direction) + "_" + (this.locY)).isFieldBlocked()) {
+            if (this.locX == this.startRow 
+            && fields.get((this.locX + direction) + "_" + (this.locY)) != null 
+            && fields.get((this.locX + 2 * direction) + "_" + (this.locY)) != null
+            && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked() 
+            && !fields.get((this.locX + 2 * direction) + "_" + (this.locY)).isFieldBlocked()) {
                 PossibleMoves[3] = (this.locX + 2*direction) + "_" + (this.locY);
             }
         }        
@@ -76,7 +88,7 @@ public class Pawn extends Piece {
         int locYField = Field.getLocY(); // Target Y position
         
         // Correct the direction for white and black pawns
-        int direction = this.isWhite() ? 1 : -1; 
+        int direction = this.isWhite() ? -1 : 1; 
         
         // Standard move: Move one square forward
         boolean standardMove = this.locY == locYField && this.locX + direction == locXField;

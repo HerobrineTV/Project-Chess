@@ -19,16 +19,66 @@ public class ChessApplication {
 
 		ArrayList<String> wFigures = new ArrayList<String>();
 
-		wFigures.add("K:0_1");
-		wFigures.add("KN:0_2");
-		wFigures.add("P:0_3");
+		// White Rooks
+		wFigures.add("R:7_0");
+		wFigures.add("R:7_7");
+
+		// White Knights
+		wFigures.add("KN:7_1");
+		wFigures.add("KN:7_6");
+
+		// White Bishops
+		wFigures.add("B:7_2");
+		wFigures.add("B:7_5");
+
+		// White Queens
+		wFigures.add("Q:7_3");
+
+		// White King
+		wFigures.add("K:7_4");
+
+		// White Pawns
+		wFigures.add("P:6_0");
+		wFigures.add("P:6_1");
+		wFigures.add("P:6_2");
+		wFigures.add("P:6_3");
+		wFigures.add("P:6_4");
+		wFigures.add("P:6_5");
+		wFigures.add("P:6_6");
+		wFigures.add("P:6_7");
 
 		ArrayList<String> bFigures = new ArrayList<String>();
 
-		bFigures.add("K:1_4");
-		bFigures.add("KN:2_4");
-		bFigures.add("P:4_3");
-		bFigures.add("KN:5_3");
+		// Black Rooks
+		bFigures.add("R:0_0");
+		bFigures.add("R:0_7");
+
+		// Black Knights
+		bFigures.add("KN:0_1");
+		bFigures.add("KN:0_6");
+
+		// Black Bishops
+		bFigures.add("B:0_2");
+		bFigures.add("B:0_5");
+
+		// Black Queens
+		bFigures.add("Q:0_3");
+
+		// Black King
+		bFigures.add("K:0_4");
+
+		// Black Pawns
+		bFigures.add("P:1_0");
+		bFigures.add("P:1_1");
+		bFigures.add("P:1_2");
+		bFigures.add("P:1_3");
+		bFigures.add("P:1_4");
+		bFigures.add("P:1_5");
+		bFigures.add("P:1_6");
+		bFigures.add("P:1_7");
+
+        //System.out.println(wFigures);
+        //System.out.println(bFigures);
 
 		Map<String, FieldSpace> Fields = chessBoard.InitFields();
 		Map<String, Piece> Pieces = chessBoard.InitFigures(wFigures, bFigures);
