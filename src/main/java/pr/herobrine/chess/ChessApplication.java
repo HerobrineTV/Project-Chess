@@ -77,33 +77,10 @@ public class ChessApplication {
 		bFigures.add("P:1_6");
 		bFigures.add("P:1_7");
 
-        //System.out.println(wFigures);
-        //System.out.println(bFigures);
-
 		Map<String, FieldSpace> Fields = chessBoard.InitFields();
 		Map<String, Piece> Pieces = chessBoard.InitFigures(wFigures, bFigures);
 
-		//Pieces.get("White_King_0").move(Fields.get("0_1"), chessBoard, null);
-		//Pieces.get("White_King_0").move(Fields.get("0_2"), chessBoard, null);
-		//Pieces.get("Black_King_0").move(Fields.get("0_1"), chessBoard, null);
-
 		BoardUI BoardUI = chessBoard.drawBoard();
-
-		//Pieces.get("White_King_0").move(Fields.get("0_1"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("0_2"), chessBoard, BoardUI);
-		//Pieces.get("Black_King_0").move(Fields.get("0_1"), chessBoard, BoardUI);
-
-
-		//Pieces.get("White_King_0").move(Fields.get("0_1"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("1_1"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("2_2"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("3_3"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("4_4"), chessBoard, BoardUI);
-		//Pieces.get("White_King_0").move(Fields.get("0_7"), chessBoard, BoardUI);
-		//Pieces.get("White_King_1").move(Fields.get("1_0"), chessBoard, BoardUI);
-		//Pieces.get("White_King_1").move(Fields.get("2_1"), chessBoard, BoardUI);
-		//Pieces.get("Black_King_0").move(Fields.get("1_1"), chessBoard, BoardUI);
-
 	}
 
 }
