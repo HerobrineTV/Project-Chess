@@ -46,6 +46,7 @@ public class BoardUI extends JFrame {
                 JLabel label = new JLabel();
                 label.setOpaque(true);
                 label.setName(i + "_" + i2);
+                label.setBorder(BorderFactory.createEmptyBorder());
     
                 // Set the background color
                 if (space.isWhiteField()) {
