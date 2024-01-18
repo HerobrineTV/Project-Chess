@@ -64,7 +64,7 @@ public class King extends Piece {
             }
         }
 
-
+        this.LastFieldsMap = fields;
         return PossibleMoves;
     }
 

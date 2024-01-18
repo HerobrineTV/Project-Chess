@@ -32,7 +32,7 @@ public class ChessApplication {
 		wFigures.add("B:7_5");
 
 		// White Queens
-		wFigures.add("Q:7_3");
+		wFigures.add("Q:3_3");
 
 		// White King
 		wFigures.add("K:7_4");

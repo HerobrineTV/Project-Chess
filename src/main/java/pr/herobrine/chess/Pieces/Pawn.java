@@ -64,7 +64,7 @@ public class Pawn extends Piece {
                 PossibleMoves[3] = (this.locX + 2*direction) + "_" + (this.locY);
             }
         }        
-        
+        this.LastFieldsMap = fields;
         return PossibleMoves;
     }
 

@@ -64,7 +64,7 @@ public class Knight extends Piece {
             }
         }
 
-
+        this.LastFieldsMap = fields;
         return PossibleMoves;
     }
 

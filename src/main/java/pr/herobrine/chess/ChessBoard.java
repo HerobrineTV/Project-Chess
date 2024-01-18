@@ -8,6 +8,7 @@ import java.util.Map;
 import pr.herobrine.chess.Pieces.King;
 import pr.herobrine.chess.Pieces.Knight;
 import pr.herobrine.chess.Pieces.Pawn;
+import pr.herobrine.chess.Pieces.Queen;
 
 public class ChessBoard {
     private boolean TestMode = false;
@@ -78,6 +79,12 @@ public class ChessBoard {
                 Pawn wPawn = new Pawn(posX, posY, "White_Pawn_"+i, true, this, fields.get(posX+"_"+posY));
                 Figures.put(wPawn.getName(), wPawn);
             }
+            else if (splitString(whiteFigures.get(i))[0].equals("Q")) {
+                int posX = Integer.parseInt(splitString(whiteFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(whiteFigures.get(i))[2]);
+                Queen wQueen = new Queen(posX, posY, "White_Queen_"+i, true, this, fields.get(posX+"_"+posY));
+                Figures.put(wQueen.getName(), wQueen);
+            }
         }
         whiteFiguresLeft = whiteFigures.size();
         for (int i = 0; i < blackFigures.size(); i++) {
@@ -99,6 +106,12 @@ public class ChessBoard {
                 int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
                 Pawn bPawn = new Pawn(posX, posY, "Black_Pawn_"+i, false, this, fields.get(posX+"_"+posY));
                 Figures.put(bPawn.getName(), bPawn);
+            }
+            else if (splitString(blackFigures.get(i))[0].equals("Q")) {
+                int posX = Integer.parseInt(splitString(blackFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
+                Queen bQueen = new Queen(posX, posY, "Black_Queen_"+i, false, this, fields.get(posX+"_"+posY));
+                Figures.put(bQueen.getName(), bQueen);
             }
         }
         blackFiguresLeft = blackFigures.size();
