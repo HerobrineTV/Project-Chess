@@ -10,10 +10,12 @@ import java.awt.event.MouseEvent;
 import java.lang.reflect.Field;
 
 public class BoardUI extends JFrame {
-    private final int SIZEX; // assuming these are defined
-    private final int SIZEY; // assuming these are defined
-    private Map<String, FieldSpace> fields; // assuming this is your field data
-    private Map<String, JLabel> jlabels; // assuming this is your piece data
+    private final int SIZEX;
+    private final int SIZEY; 
+    private int labelWidth;
+    private int labelHeight;
+    private Map<String, FieldSpace> fields; 
+    private Map<String, JLabel> jlabels;
     private ChessBoard chessBoard;
     private Piece CurrentSelectedPiece;
     private BoardUI BoardUI;
@@ -31,12 +33,14 @@ public class BoardUI extends JFrame {
 
     private void initializeUI() {
         setTitle("Board Game [Map: "+chessBoard.getBoardName()+"] [Turn: "+chessBoard.getTurnNumber()+"] "+chessBoard.getCurrentTurn()+"'s Turn!");
+        // Needs a Settings UI
         setSize(1080, 1080);
+        //setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(SIZEX, SIZEY));
 
-        int labelWidth = getWidth() / SIZEX;
-        int labelHeight = getHeight() / SIZEY;
+        labelWidth = getWidth() / SIZEX;
+        labelHeight = getHeight() / SIZEY;
         
         JLabel[] currentOutlinedLabels = new JLabel[fields.size()];
 
@@ -172,5 +176,14 @@ public class BoardUI extends JFrame {
             JOptionPane.showMessageDialog(null, "Game Over!");
             System.exit(0);
         }
+    }
+
+    public void replacePiece(String Field, Piece newPiece) {
+        fields.get(Field).setCurrentPieceOnField(newPiece);
+        ImageIcon originalIcon = fields.get(Field).getCurrentPieceOnField().getImageIcon();
+        Image resizedImage = originalIcon.getImage().getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+        jlabels.get(Field).setIcon(resizedIcon);
     }
 }
