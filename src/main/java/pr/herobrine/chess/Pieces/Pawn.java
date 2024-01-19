@@ -29,6 +29,8 @@ public class Pawn extends Piece {
         }
     }
 
+    // TODO Add a move for the "En Pasant" move
+
     public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard) {
         String[] PossibleMoves = new String[4];
         if (this.currentField != null) {
