@@ -22,6 +22,7 @@ public class Piece implements java.io.Serializable{
     protected ChessBoard chessBoard;
     protected FieldSpace currentField;
     protected ImageIcon ImageIcon;
+    protected Map<String, FieldSpace> LastFieldsMap;
 
     public boolean move(FieldSpace Field, ChessBoard chessBoard, BoardUI BoardUI) {
         return false;

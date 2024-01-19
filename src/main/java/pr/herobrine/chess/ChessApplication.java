@@ -22,6 +22,7 @@ public class ChessApplication {
 		// White Rooks
 		wFigures.add("R:7_0");
 		wFigures.add("R:7_7");
+		// wFigures.add("R:3_3");
 
 		// White Knights
 		wFigures.add("KN:7_1");
@@ -33,6 +34,7 @@ public class ChessApplication {
 
 		// White Queens
 		wFigures.add("Q:7_3");
+		// wFigures.add("Q:3_3");
 
 		// White King
 		wFigures.add("K:7_4");
