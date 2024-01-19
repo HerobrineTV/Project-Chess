@@ -8,7 +8,7 @@ import pr.herobrine.chess.FieldSpace;
 import pr.herobrine.chess.Piece;
 
 public class Knight extends Piece {
-    // Implement Class King here
+
     public Knight(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
         this.isKnight = true;
         this.locX = locX;

@@ -31,6 +31,7 @@ public class ChessApplication {
 		// White Bishops
 		wFigures.add("B:7_2");
 		wFigures.add("B:7_5");
+		//wFigures.add("B:3_3");
 
 		// White Queens
 		wFigures.add("Q:7_3");

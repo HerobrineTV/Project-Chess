@@ -9,7 +9,7 @@ import pr.herobrine.chess.Piece;
 
 public class Pawn extends Piece {
     private int startRow;
-    // Implement Class King here
+    
     public Pawn(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
         this.isPawn = true;
         this.locX = locX;

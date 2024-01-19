@@ -1,10 +1,10 @@
 package pr.herobrine.chess;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import pr.herobrine.chess.Pieces.Bishop;
 import pr.herobrine.chess.Pieces.King;
 import pr.herobrine.chess.Pieces.Knight;
 import pr.herobrine.chess.Pieces.Pawn;
@@ -32,24 +32,6 @@ public class ChessBoard {
     }
 
     public BoardUI drawBoard() {
-        //System.out.println(" ---------------------------------------");
-        for (int i = 0; i < SIZEX; i++) {
-            String line = "";
-            for (int i2 = 0; i2 < SIZEY; i2++) {
-                FieldSpace space = fields.get(i + "_" + i2);
-                if (space.isFieldBlocked() == false) {
-                    if (space.isWhiteField()) {
-                        line += "| W |";
-                    } else {
-                        line += "| B |";
-                    }
-                } else {
-                    line += "| "+space.getCurrentPieceOnField().getShortname()+" |";
-                }
-            }
-            //System.out.println(line);
-            //System.out.println(" ---------------------------------------");
-        }
         BoardUI board = new BoardUI(SIZEX, SIZEY, fields, this);
         board.setVisible(true);
         System.out.println("Opened Board");
@@ -92,6 +74,12 @@ public class ChessBoard {
                 Rook wRook = new Rook(posX, posY, "White_Rook_"+i, true, this, fields.get(posX+"_"+posY));
                 Figures.put(wRook.getName(), wRook);
             }
+            else if (splitString(whiteFigures.get(i))[0].equals("B")) {
+                int posX = Integer.parseInt(splitString(whiteFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(whiteFigures.get(i))[2]);
+                Bishop wBishop = new Bishop(posX, posY, "White_Bishop_"+i, true, this, fields.get(posX+"_"+posY));
+                Figures.put(wBishop.getName(), wBishop);
+            }
         }
         whiteFiguresLeft = whiteFigures.size();
         for (int i = 0; i < blackFigures.size(); i++) {
@@ -125,6 +113,12 @@ public class ChessBoard {
                 int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
                 Rook bRook = new Rook(posX, posY, "Black_Rook_"+i, false, this, fields.get(posX+"_"+posY));
                 Figures.put(bRook.getName(), bRook);
+            }
+            else if (splitString(blackFigures.get(i))[0].equals("B")) {
+                int posX = Integer.parseInt(splitString(blackFigures.get(i))[1]);
+                int posY = Integer.parseInt(splitString(blackFigures.get(i))[2]);
+                Bishop bBishop = new Bishop(posX, posY, "Black_Bishop_"+i, false, this, fields.get(posX+"_"+posY));
+                Figures.put(bBishop.getName(), bBishop);
             }
         }
         blackFiguresLeft = blackFigures.size();

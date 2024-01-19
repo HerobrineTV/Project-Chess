@@ -8,23 +8,23 @@ import pr.herobrine.chess.ChessBoard;
 import pr.herobrine.chess.FieldSpace;
 import pr.herobrine.chess.Piece;
 
-public class Rook extends Piece {
+public class Bishop extends Piece {
 
-    public Rook(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
-        this.isRook = true;
+    public Bishop(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
+        this.isQueen = true;
         this.locX = locX;
         this.locY = locY;
         this.isWhite = isWhite;
         this.chessBoard = chessBoard;
         this.name = name;
-        this.shortname = "R";
+        this.shortname = "B";
         this.currentField = currentField;
         this.currentField.setCurrentPieceOnField(this);
 
         if (isWhite == true) {
-            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/White_Rook.png"));
+            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/White_Bishop.png"));
         } else {
-            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/Black_Rook.png"));
+            this.ImageIcon = new javax.swing.ImageIcon(getClass().getResource("/pr/herobrine/chess/Pieces/Images/Black_Bishop.png"));
         }
     }
 
@@ -33,7 +33,7 @@ public class Rook extends Piece {
     
         if (this.currentField != null) {
             // Directions: horizontal, vertical, and diagonal
-            int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+            int[][] directions = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
     
             for (int[] dir : directions) {
                 int stepX = dir[0];
@@ -144,12 +144,11 @@ public class Rook extends Piece {
                 return false;
             }
         
-            // Check if the move is horizontal, vertical, or diagonal
-            boolean isHorizontal = this.locY == locY;
-            boolean isVertical = this.locX == locX;
+            // Check if the move is diagonal
+            boolean isDiagonal = Math.abs(this.locX - locX) == Math.abs(this.locY - locY);
         
             // Check if the Direction is legal
-            if (!(isHorizontal || isVertical )) {
+            if (!(isDiagonal)) {
                 return false;
             }
         

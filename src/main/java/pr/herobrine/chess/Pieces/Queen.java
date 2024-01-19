@@ -9,7 +9,7 @@ import pr.herobrine.chess.FieldSpace;
 import pr.herobrine.chess.Piece;
 
 public class Queen extends Piece {
-    // Implement Class King here
+
     public Queen(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
         this.isQueen = true;
         this.locX = locX;
