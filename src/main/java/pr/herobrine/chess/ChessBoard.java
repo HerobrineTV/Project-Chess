@@ -218,4 +218,9 @@ public class ChessBoard {
 
         return new String[]{firstSplit[0], secondSplit[0], secondSplit[1]};
     }
+
+    public void replaceFigureInMap(Piece oldFigure, Piece newFigure) {
+        figures.remove(oldFigure.getName());
+        figures.put(newFigure.getName(), newFigure);
+    }
 }

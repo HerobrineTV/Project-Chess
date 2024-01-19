@@ -141,6 +141,13 @@ public class Pawn extends Piece {
             //System.out.println(this.name + " moved to " + this.locX + "," + this.locY);
             if (BoardUI != null){
                 BoardUI.updatePieceLocation(oldLocX + "_" + oldLocY, this.locX + "_" + this.locY);
+                int dborder = this.isWhite() ? 0 : 1*(chessBoard.getSizeY()-1);
+                if (this.locX == dborder) {
+                    Queen queen = this.isWhite() ? new Queen(this.locX, this.locY, "White_Queen_"+this.name, this.isWhite(), this.chessBoard, this.currentField) : new Queen(this.locX, this.locY, "Black_Queen_"+this.name, this.isWhite(), this.chessBoard, this.currentField);
+                    this.chessBoard.replaceFigureInMap(this, queen);
+                    BoardUI.replacePiece(this.locX+"_"+this.locY, queen);
+                    this.currentField = null;
+                }
             }
             return true;
         } else {
