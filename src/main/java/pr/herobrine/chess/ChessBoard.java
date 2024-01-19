@@ -1,6 +1,7 @@
 package pr.herobrine.chess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -212,6 +213,10 @@ public class ChessBoard {
         return blackFiguresLeft;
     }
 
+    public void setFields(Map<String, FieldSpace> Fields){
+        this.fields = Fields;
+    }
+
     private static String[] splitString(String input) {
         String[] firstSplit = input.split(":");
         String[] secondSplit = firstSplit[1].split("_");
@@ -223,4 +228,20 @@ public class ChessBoard {
         figures.remove(oldFigure.getName());
         figures.put(newFigure.getName(), newFigure);
     }
+
+    public String[] getBlockedfieldsforKing(King king) {
+        ArrayList<String> blockedFields = new ArrayList<>();
+        for (Map.Entry<String, FieldSpace> entry : fields.entrySet()) {
+            FieldSpace space = entry.getValue();
+            if (space.getCurrentPieceOnField() != null) {
+                if (space.getCurrentPieceOnField().isWhite() != king.isWhite()) {
+                    String[] moves = space.getCurrentPieceOnField().getMoves(this.fields, this, false);
+                    Collections.addAll(blockedFields, moves);
+                }
+            }
+        }
+        return blockedFields.toArray(new String[0]);
+    }
+    
+
 }

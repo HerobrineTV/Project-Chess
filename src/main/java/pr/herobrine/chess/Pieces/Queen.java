@@ -28,7 +28,7 @@ public class Queen extends Piece {
         }
     }
 
-    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard) {
+    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean ONLYFORKING) {
         ArrayList<String> possibleMoves = new ArrayList<>();
     
         if (this.currentField != null) {

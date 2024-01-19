@@ -32,6 +32,10 @@ public class Piece implements java.io.Serializable{
         return new String[0];
     }
 
+    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean checkBlockedFields) {
+        return new String[0];
+    }
+
     public String getName() {
         return this.name;
     }

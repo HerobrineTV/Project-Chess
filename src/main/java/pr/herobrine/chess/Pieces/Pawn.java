@@ -31,13 +31,14 @@ public class Pawn extends Piece {
 
     // TODO Add a move for the "En Pasant" move
 
-    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard) {
+    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean ONLYFORKING) {
         String[] PossibleMoves = new String[4];
         if (this.currentField != null) {
             int direction = this.isWhite() ? -1 : 1; // White pawns move up (-1), black pawns move down (+1)
         
             // Forward move
             if (this.locX + direction >= 0 && this.locX + direction <= chessBoard.getSizeX() 
+            && ONLYFORKING == true
             && fields.get((this.locX + direction) + "_" + (this.locY)) != null 
             && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked()) {
                 PossibleMoves[0] = (this.locX + direction) + "_" + (this.locY);
@@ -46,19 +47,20 @@ public class Pawn extends Piece {
             // Diagonal capture moves to the left and right
             if (this.locX >= 0 && this.locX + direction >= 0 && this.locX + direction < chessBoard.getSizeX()  
             && fields.get((this.locX + direction) + "_" + (this.locY - 1)) != null
-            && fields.get((this.locX + direction) + "_" + (this.locY - 1)).isFieldBlocked() 
-            && fields.get((this.locX + direction) + "_" + (this.locY - 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
+            && (fields.get((this.locX + direction) + "_" + (this.locY - 1)).isFieldBlocked() 
+            && fields.get((this.locX + direction) + "_" + (this.locY - 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) || (ONLYFORKING == false && fields.get((this.locX + direction) + "_" + (this.locY - 1)) != null)) {
                 PossibleMoves[1] = (this.locX + direction) + "_" + (this.locY - 1);
             }
             if (this.locX <= chessBoard.getSizeX() - 1 && this.locX + direction >= 0 && this.locX + direction < chessBoard.getSizeX() 
             && fields.get((this.locX + direction) + "_" + (this.locY + 1)) != null
-            && fields.get((this.locX + direction) + "_" + (this.locY + 1)).isFieldBlocked() 
-            && fields.get((this.locX + direction) + "_" + (this.locY + 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) {
+            && (fields.get((this.locX + direction) + "_" + (this.locY + 1)).isFieldBlocked()
+            && fields.get((this.locX + direction) + "_" + (this.locY + 1)).getCurrentPieceOnField().isWhite() != this.isWhite()) || (ONLYFORKING == false && fields.get((this.locX + direction) + "_" + (this.locY + 1)) != null)) {
                 PossibleMoves[2] = (this.locX + direction) + "_" + (this.locY + 1);
             }
         
             // Two-square move from start position
             if (this.locX == this.startRow 
+            && ONLYFORKING == true
             && fields.get((this.locX + direction) + "_" + (this.locY)) != null 
             && fields.get((this.locX + 2 * direction) + "_" + (this.locY)) != null
             && !fields.get((this.locX + direction) + "_" + (this.locY)).isFieldBlocked() 

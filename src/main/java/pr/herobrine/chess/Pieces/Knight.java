@@ -27,7 +27,7 @@ public class Knight extends Piece {
         }
     }
 
-    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard) {
+    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean ONLYFORKING) {
         String[] PossibleMoves = new String[8];
         if (this.currentField != null) {
             // Two squares left, one square up

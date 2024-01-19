@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Field;
 
 public class BoardUI extends JFrame {
     private final int SIZEX;
@@ -74,7 +73,7 @@ public class BoardUI extends JFrame {
                             if (space.getCurrentPieceOnField()!= null) {
                                 Boolean isThrowable = false;
                                 if (CurrentSelectedPiece != null && CurrentSelectedPiece.isOnTurn()) {
-                                    String[] Moves = CurrentSelectedPiece.getMoves(fields, chessBoard);
+                                    String[] Moves = CurrentSelectedPiece.getMoves(fields, chessBoard, true);
                                     for (int i2 = 0; i2 < Moves.length; i2++) {
                                         if (jlabels.get(Moves[i2]) == jlabels.get(label.getName())) {
                                             CurrentSelectedPiece.move(fields.get(label.getName()), chessBoard, BoardUI);
@@ -85,7 +84,7 @@ public class BoardUI extends JFrame {
                                 if (isThrowable == false) {
                                     label.setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
                                     currentOutlinedLabels[fields.size()-1] = label;
-                                    String[] Moves2 = space.getCurrentPieceOnField().getMoves(fields, chessBoard);
+                                    String[] Moves2 = space.getCurrentPieceOnField().getMoves(fields, chessBoard, true);
                                     CurrentSelectedPiece = space.getCurrentPieceOnField();
     
                                     for (int i3 = 0; i3 < Moves2.length; i3++) {
@@ -97,7 +96,7 @@ public class BoardUI extends JFrame {
                                 }
                             } else {
                                 if (CurrentSelectedPiece != null) {
-                                    String[] Moves = CurrentSelectedPiece.getMoves(fields, chessBoard);
+                                    String[] Moves = CurrentSelectedPiece.getMoves(fields, chessBoard, true);
                                     for (int i2 = 0; i2 < Moves.length; i2++) {
                                         if (jlabels.get(Moves[i2]) == jlabels.get(label.getName())) {
                                             CurrentSelectedPiece.move(fields.get(label.getName()), chessBoard, BoardUI);
@@ -112,7 +111,7 @@ public class BoardUI extends JFrame {
                         } else {
                             label.setBorder(BorderFactory.createEmptyBorder());
                             if (space.getCurrentPieceOnField() != null) {
-                                String[] Moves = space.getCurrentPieceOnField().getMoves(fields, chessBoard);
+                                String[] Moves = space.getCurrentPieceOnField().getMoves(fields, chessBoard, false);
                                 for (int i2 = 0; i2 < Moves.length; i2++) {
                                     if (jlabels.get(Moves[i2])!= null) {
                                         jlabels.get(Moves[i2]).setBorder(BorderFactory.createEmptyBorder());

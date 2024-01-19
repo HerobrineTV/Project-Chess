@@ -62,11 +62,71 @@ public class King extends Piece {
             if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields)) {
                 PossibleMoves[7] = (this.locX + 1) + "_" + (this.locY + 1);
             }
+
+            String[] blockedFields = chessBoard.getBlockedfieldsforKing(this);
+
+            for (int i = 0; i < blockedFields.length; i++) {
+                for (int i2 = 0; i2 < PossibleMoves.length; i2++) {
+                    if (PossibleMoves[i2] != null){
+                        if (PossibleMoves[i2].equals(blockedFields[i])) {
+                            PossibleMoves[i2] = "";
+                        }
+                    }
+                }
+            }
         }
 
         this.LastFieldsMap = fields;
         return PossibleMoves;
     }
+
+    public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean checkBlockedFields) {
+
+        if (checkBlockedFields) {
+            return getMoves(fields, chessBoard);
+        }
+
+        String[] PossibleMoves = new String[8];
+        if (this.currentField != null) {
+            // Move one square to the left
+            if (this.locX > 0 && isMovePossible(this.locX - 1, this.locY, fields)) {
+                PossibleMoves[0] = (this.locX - 1) + "_" + this.locY;
+            }
+            // Move one square to the right
+            if (this.locX < chessBoard.getSizeX() - 1 && isMovePossible(this.locX + 1, this.locY, fields)) {
+                PossibleMoves[1] = (this.locX + 1) + "_" + this.locY;
+            }
+            // Move one square up
+            if (this.locY > 0 && isMovePossible(this.locX, this.locY - 1, fields)) {
+                PossibleMoves[2] = this.locX + "_" + (this.locY - 1);
+            }
+            // Move one square down
+            if (this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX, this.locY + 1, fields)) {
+                PossibleMoves[3] = this.locX + "_" + (this.locY + 1);
+            }
+            // Move diagonally up-left
+            if (this.locX > 0 && this.locY > 0 && isMovePossible(this.locX - 1, this.locY - 1, fields)) {
+                PossibleMoves[4] = (this.locX - 1) + "_" + (this.locY - 1);
+            }
+            // Move diagonally up-right
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 0 && isMovePossible(this.locX + 1, this.locY - 1, fields)) {
+                PossibleMoves[5] = (this.locX + 1) + "_" + (this.locY - 1);
+            }
+            // Move diagonally down-left
+            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 1, this.locY + 1, fields)) {
+                PossibleMoves[6] = (this.locX - 1) + "_" + (this.locY + 1);
+            }
+            // Move diagonally down-right
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields)) {
+                PossibleMoves[7] = (this.locX + 1) + "_" + (this.locY + 1);
+            }
+
+        }
+
+        this.LastFieldsMap = fields;
+        return PossibleMoves;
+    }
+
 
     public boolean move(FieldSpace Field, ChessBoard chessBoard, BoardUI BoardUI) {
         boolean isValidMove = true;
