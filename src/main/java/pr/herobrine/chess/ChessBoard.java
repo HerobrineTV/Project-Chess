@@ -38,8 +38,6 @@ public class ChessBoard {
         return board;
     }
 
-
-    // Now make it, that if thers 2 White_Kings the second one is called White_King2
     public Map<String, Piece> InitFigures(ArrayList<String> whiteFigures, ArrayList<String> blackFigures) {
         Map<String, Piece> Figures = new HashMap<>();
         for (int i = 0; i < whiteFigures.size(); i++) {
