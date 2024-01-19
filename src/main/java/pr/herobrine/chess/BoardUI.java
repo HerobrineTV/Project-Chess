@@ -33,7 +33,9 @@ public class BoardUI extends JFrame {
 
     private void initializeUI() {
         setTitle("Board Game [Map: "+chessBoard.getBoardName()+"] [Turn: "+chessBoard.getTurnNumber()+"] "+chessBoard.getCurrentTurn()+"'s Turn!");
+        // Needs a Settings UI
         setSize(1080, 1080);
+        //setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(SIZEX, SIZEY));
 
