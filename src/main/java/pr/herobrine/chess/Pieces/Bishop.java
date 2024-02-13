@@ -47,7 +47,7 @@ public class Bishop extends Piece {
     
                     // Check if the new position is within the bounds of the board
                     if (x >= 0 && x < chessBoard.getSizeX() && y >= 0 && y < chessBoard.getSizeY()) {
-                        if (isMovePossible(x, y, fields)) {
+                        if (isMovePossible(x, y, fields, this)) {
                             possibleMoves.add(x + "_" + y);
                             if (fields.containsKey(x + "_" + y) && fields.get(x + "_" + y).isFieldBlocked()) {
                                 // If an enemy piece is encountered, stop in this direction after adding the capture move
@@ -102,6 +102,9 @@ public class Bishop extends Piece {
         int locX = Field.getLocX();
         int locY = Field.getLocY();
 
+        int oldLocX = this.locX;
+        int oldLocY = this.locY;
+
         if (isMoveValid(locX, locY, this.LastFieldsMap, chessBoard)) {
 
             } else {
@@ -114,8 +117,6 @@ public class Bishop extends Piece {
                 if (this.currentField != null) {
                     this.currentField.setCurrentPieceOnField(null);
                 }
-                int oldLocX = this.locX;
-                int oldLocY = this.locY;
 
                 this.locX = locX;
                 this.locY = locY;
@@ -132,7 +133,7 @@ public class Bishop extends Piece {
                 return true;
             } else {
                 this.currentField.setCurrentPieceOnField(this);
-                System.out.println(this.name + " cannot move to " + locX + "," + locY + " because " + failReason + " ["+this.locX + "," + this.locY+"]");
+                System.out.println("[" + this.name + "] cannot move from [" + oldLocX + "," + oldLocY + "] to [" + locX + "," + locY + "] Reason: " + failReason);
                 return false;
             }
 

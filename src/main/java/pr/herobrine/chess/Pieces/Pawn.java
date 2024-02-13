@@ -126,13 +126,14 @@ public class Pawn extends Piece {
 
         }
 
+        int oldLocX = this.locX;
+        int oldLocY = this.locY;
+
         if (isValidMove) {
 
             if (this.currentField != null) {
                 this.currentField.setCurrentPieceOnField(null);
             }
-            int oldLocX = this.locX;
-            int oldLocY = this.locY;
 
             this.locX = locXField;
             this.locY = locYField;
@@ -156,7 +157,7 @@ public class Pawn extends Piece {
             return true;
         } else {
             this.currentField.setCurrentPieceOnField(this);
-            System.out.println(this.name + " cannot move to " + locX + "," + locY + " because " + failReason + " ["+this.locX + "," + this.locY+"]");
+            System.out.println("[" + this.name + "] cannot move from [" + oldLocX + "," + oldLocY + "] to [" + locXField + "," + locYField + "] Reason: " + failReason);
             return false;
         }
         

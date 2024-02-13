@@ -230,16 +230,26 @@ public class ChessBoard {
     }
 
     public String[] getBlockedfieldsforKing(King king) {
+        King OtherKing = null;
         ArrayList<String> blockedFields = new ArrayList<>();
         for (Map.Entry<String, FieldSpace> entry : fields.entrySet()) {
             FieldSpace space = entry.getValue();
             if (space.getCurrentPieceOnField() != null) {
                 if (space.getCurrentPieceOnField().isWhite() != king.isWhite()) {
+                    if (space.getCurrentPieceOnField().isKing()) { 
+                        OtherKing = (King) space.getCurrentPieceOnField();
+                        continue; 
+                    }
                     String[] moves = space.getCurrentPieceOnField().getMoves(this.fields, this, false);
                     Collections.addAll(blockedFields, moves);
                 }
             }
         }
+        if (OtherKing != null) {
+            String[] moves = OtherKing.getMoves(this.fields, this, false);
+            Collections.addAll(blockedFields, moves);
+        }
+
         return blockedFields.toArray(new String[0]);
     }
     

@@ -31,35 +31,35 @@ public class Knight extends Piece {
         String[] PossibleMoves = new String[8];
         if (this.currentField != null) {
             // Two squares left, one square up
-            if (this.locX > 1 && this.locY > 0 && isMovePossible(this.locX - 2, this.locY - 1, fields)) {
+            if (this.locX > 1 && this.locY > 0 && isMovePossible(this.locX - 2, this.locY - 1, fields, this)) {
                 PossibleMoves[0] = (this.locX - 2) + "_" + (this.locY - 1);
             }
             // Two squares left, one square down
-            if (this.locX > 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 2, this.locY + 1, fields)) {
+            if (this.locX > 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 2, this.locY + 1, fields, this)) {
                 PossibleMoves[1] = (this.locX - 2) + "_" + (this.locY + 1);
             }
             // Two squares right, one square up
-            if (this.locX < chessBoard.getSizeX() - 2 && this.locY > 0 && isMovePossible(this.locX + 2, this.locY - 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 2 && this.locY > 0 && isMovePossible(this.locX + 2, this.locY - 1, fields, this)) {
                 PossibleMoves[2] = (this.locX + 2) + "_" + (this.locY - 1);
             }
             // Two squares right, one square down
-            if (this.locX < chessBoard.getSizeX() - 2 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 2, this.locY + 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 2 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 2, this.locY + 1, fields, this)) {
                 PossibleMoves[3] = (this.locX + 2) + "_" + (this.locY + 1);
             }
             // One square left, two squares up
-            if (this.locX > 0 && this.locY > 1 && isMovePossible(this.locX - 1, this.locY - 2, fields)) {
+            if (this.locX > 0 && this.locY > 1 && isMovePossible(this.locX - 1, this.locY - 2, fields, this)) {
                 PossibleMoves[4] = (this.locX - 1) + "_" + (this.locY - 2);
             }
             // One square left, two squares down
-            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 2 && isMovePossible(this.locX - 1, this.locY + 2, fields)) {
+            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 2 && isMovePossible(this.locX - 1, this.locY + 2, fields, this)) {
                 PossibleMoves[5] = (this.locX - 1) + "_" + (this.locY + 2);
             }
             // One square right, two squares up
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 1 && isMovePossible(this.locX + 1, this.locY - 2, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 1 && isMovePossible(this.locX + 1, this.locY - 2, fields, this)) {
                 PossibleMoves[6] = (this.locX + 1) + "_" + (this.locY - 2);
             }
             // One square right, two squares down
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 2 && isMovePossible(this.locX + 1, this.locY + 2, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 2 && isMovePossible(this.locX + 1, this.locY + 2, fields, this)) {
                 PossibleMoves[7] = (this.locX + 1) + "_" + (this.locY + 2);
             }
         }
@@ -109,13 +109,13 @@ public class Knight extends Piece {
             isValidMove = false;
         }
 
+        int oldLocX = this.locX;
+        int oldLocY = this.locY;
 
         if (isValidMove) {
             if (this.currentField != null) {
                 this.currentField.setCurrentPieceOnField(null);
             }
-            int oldLocX = this.locX;
-            int oldLocY = this.locY;
 
             this.locX = locX;
             this.locY = locY;
@@ -132,7 +132,7 @@ public class Knight extends Piece {
             return true;
         } else {
             this.currentField.setCurrentPieceOnField(this);
-            System.out.println(this.name + " cannot move to " + locX + "," + locY + " because " + failReason + " ["+this.locX + "," + this.locY+"]");
+            System.out.println("[" + this.name + "] cannot move from [" + oldLocX + "," + oldLocY + "] to [" + locX + "," + locY + "] Reason: " + failReason);
             return false;
         }
         

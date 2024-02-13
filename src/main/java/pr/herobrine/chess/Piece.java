@@ -87,8 +87,24 @@ public class Piece implements java.io.Serializable{
         return this.isPawn;
     }
 
-    protected boolean isMovePossible(int x, int y, Map<String, FieldSpace> fields) {
-        return !fields.get(x + "_" + y).isFieldBlocked() || fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite();
+    protected boolean isMovePossible(int x, int y, Map<String, FieldSpace> fields, Piece piece) {
+        if (piece.isKing()) {
+            Boolean KingFound = false;
+
+            if (fields.get(x+"_"+y) != null && fields.get(x+"_"+y).getCurrentPieceOnField() != null && fields.get(x+"_"+y).getCurrentPieceOnField().isKing() && fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x+"_"+(y+1)) != null && fields.get(x+"_"+(y+1)).getCurrentPieceOnField() != null && fields.get(x+"_"+(y+1)).getCurrentPieceOnField().isKing() && fields.get(x+"_"+(y+1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x+"_"+(y-1)) != null && fields.get(x+"_"+(y-1)).getCurrentPieceOnField() != null && fields.get(x+"_"+(y-1)).getCurrentPieceOnField().isKing() && fields.get(x+"_"+(y-1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x+1+"_"+y) != null && fields.get(x+1+"_"+y).getCurrentPieceOnField() != null && fields.get(x+1+"_"+y).getCurrentPieceOnField().isKing() && fields.get(x+1+"_"+y).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x+1+"_"+(y+1))!= null && fields.get(x+1+"_"+(y+1)).getCurrentPieceOnField() != null && fields.get(x+1+"_"+(y+1)).getCurrentPieceOnField().isKing() && fields.get(x+1+"_"+(y+1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x+1+"_"+(y-1)) != null && fields.get(x+1+"_"+(y-1)).getCurrentPieceOnField() != null && fields.get(x+1+"_"+(y-1)).getCurrentPieceOnField().isKing() && fields.get(x+1+"_"+(y-1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x-1+"_"+y) != null && fields.get(x-1+"_"+y).getCurrentPieceOnField() != null && fields.get(x-1+"_"+y).getCurrentPieceOnField().isKing() && fields.get(x-1+"_"+y).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x-1+"_"+(y+1)) != null && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField() != null && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField().isKing() && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+            if (fields.get(x-1+"_"+(y-1)) != null && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField() != null && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField().isKing() && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
+
+            return !fields.get(x + "_" + y).isFieldBlocked() || ((fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite()) && !KingFound);
+        } else {
+            return !fields.get(x + "_" + y).isFieldBlocked() || fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite();
+        }
     }
 
     public boolean isOnTurn() {

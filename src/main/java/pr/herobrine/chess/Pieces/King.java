@@ -31,35 +31,35 @@ public class King extends Piece {
         String[] PossibleMoves = new String[8];
         if (this.currentField != null) {
             // Move one square to the left
-            if (this.locX > 0 && isMovePossible(this.locX - 1, this.locY, fields)) {
+            if (this.locX > 0 && isMovePossible(this.locX - 1, this.locY, fields, this)) {
                 PossibleMoves[0] = (this.locX - 1) + "_" + this.locY;
             }
             // Move one square to the right
-            if (this.locX < chessBoard.getSizeX() - 1 && isMovePossible(this.locX + 1, this.locY, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && isMovePossible(this.locX + 1, this.locY, fields, this)) {
                 PossibleMoves[1] = (this.locX + 1) + "_" + this.locY;
             }
             // Move one square up
-            if (this.locY > 0 && isMovePossible(this.locX, this.locY - 1, fields)) {
+            if (this.locY > 0 && isMovePossible(this.locX, this.locY - 1, fields, this)) {
                 PossibleMoves[2] = this.locX + "_" + (this.locY - 1);
             }
             // Move one square down
-            if (this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX, this.locY + 1, fields)) {
+            if (this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX, this.locY + 1, fields, this)) {
                 PossibleMoves[3] = this.locX + "_" + (this.locY + 1);
             }
             // Move diagonally up-left
-            if (this.locX > 0 && this.locY > 0 && isMovePossible(this.locX - 1, this.locY - 1, fields)) {
+            if (this.locX > 0 && this.locY > 0 && isMovePossible(this.locX - 1, this.locY - 1, fields, this)) {
                 PossibleMoves[4] = (this.locX - 1) + "_" + (this.locY - 1);
             }
             // Move diagonally up-right
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 0 && isMovePossible(this.locX + 1, this.locY - 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 0 && isMovePossible(this.locX + 1, this.locY - 1, fields, this)) {
                 PossibleMoves[5] = (this.locX + 1) + "_" + (this.locY - 1);
             }
             // Move diagonally down-left
-            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 1, this.locY + 1, fields)) {
+            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 1, this.locY + 1, fields, this)) {
                 PossibleMoves[6] = (this.locX - 1) + "_" + (this.locY + 1);
             }
             // Move diagonally down-right
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields, this)) {
                 PossibleMoves[7] = (this.locX + 1) + "_" + (this.locY + 1);
             }
 
@@ -89,35 +89,35 @@ public class King extends Piece {
         String[] PossibleMoves = new String[8];
         if (this.currentField != null) {
             // Move one square to the left
-            if (this.locX > 0 && isMovePossible(this.locX - 1, this.locY, fields)) {
+            if (this.locX > 0 && isMovePossible(this.locX - 1, this.locY, fields, this)) {
                 PossibleMoves[0] = (this.locX - 1) + "_" + this.locY;
             }
             // Move one square to the right
-            if (this.locX < chessBoard.getSizeX() - 1 && isMovePossible(this.locX + 1, this.locY, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && isMovePossible(this.locX + 1, this.locY, fields, this)) {
                 PossibleMoves[1] = (this.locX + 1) + "_" + this.locY;
             }
             // Move one square up
-            if (this.locY > 0 && isMovePossible(this.locX, this.locY - 1, fields)) {
+            if (this.locY > 0 && isMovePossible(this.locX, this.locY - 1, fields, this)) {
                 PossibleMoves[2] = this.locX + "_" + (this.locY - 1);
             }
             // Move one square down
-            if (this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX, this.locY + 1, fields)) {
+            if (this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX, this.locY + 1, fields, this)) {
                 PossibleMoves[3] = this.locX + "_" + (this.locY + 1);
             }
             // Move diagonally up-left
-            if (this.locX > 0 && this.locY > 0 && isMovePossible(this.locX - 1, this.locY - 1, fields)) {
+            if (this.locX > 0 && this.locY > 0 && isMovePossible(this.locX - 1, this.locY - 1, fields, this)) {
                 PossibleMoves[4] = (this.locX - 1) + "_" + (this.locY - 1);
             }
             // Move diagonally up-right
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 0 && isMovePossible(this.locX + 1, this.locY - 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY > 0 && isMovePossible(this.locX + 1, this.locY - 1, fields, this)) {
                 PossibleMoves[5] = (this.locX + 1) + "_" + (this.locY - 1);
             }
             // Move diagonally down-left
-            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 1, this.locY + 1, fields)) {
+            if (this.locX > 0 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX - 1, this.locY + 1, fields, this)) {
                 PossibleMoves[6] = (this.locX - 1) + "_" + (this.locY + 1);
             }
             // Move diagonally down-right
-            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields)) {
+            if (this.locX < chessBoard.getSizeX() - 1 && this.locY < chessBoard.getSizeY() - 1 && isMovePossible(this.locX + 1, this.locY + 1, fields, this)) {
                 PossibleMoves[7] = (this.locX + 1) + "_" + (this.locY + 1);
             }
 
@@ -168,13 +168,13 @@ public class King extends Piece {
                 isValidMove = false;
             }
 
+            int oldLocX = this.locX;
+            int oldLocY = this.locY;
 
             if (isValidMove) {
                 if (this.currentField != null) {
                     this.currentField.setCurrentPieceOnField(null);
                 }
-                int oldLocX = this.locX;
-                int oldLocY = this.locY;
 
                 this.locX = locX;
                 this.locY = locY;
@@ -191,7 +191,7 @@ public class King extends Piece {
                 return true;
             } else {
                 this.currentField.setCurrentPieceOnField(this);
-                System.out.println(this.name + " cannot move to " + locX + "," + locY + " because " + failReason + " ["+this.locX + "," + this.locY+"]");
+                System.out.println("[" + this.name + "] cannot move from [" + oldLocX + "," + oldLocY + "] to [" + locX + "," + locY + "] Reason: " + failReason);
                 return false;
             }
 
