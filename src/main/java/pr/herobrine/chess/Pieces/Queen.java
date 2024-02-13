@@ -10,6 +10,8 @@ import pr.herobrine.chess.Piece;
 
 public class Queen extends Piece {
 
+    private String BlockedFields[] = new String[8];
+
     public Queen(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
         this.isQueen = true;
         this.locX = locX;
@@ -30,16 +32,19 @@ public class Queen extends Piece {
 
     public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean ONLYFORKING) {
         ArrayList<String> possibleMoves = new ArrayList<>();
+        this.BlockedFields = new String[8];
     
         if (this.currentField != null) {
             // Directions: horizontal, vertical, and diagonal
             int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
-    
+            int gonethrough = 0;
+
             for (int[] dir : directions) {
                 int stepX = dir[0];
                 int stepY = dir[1];
                 int x = this.locX;
                 int y = this.locY;
+
     
                 while (true) {
                     x += stepX;
@@ -54,6 +59,9 @@ public class Queen extends Piece {
                                 break;
                             }
                         } else {
+                            if (fields.containsKey(x + "_" + y) && fields.get(x + "_" + y).isFieldBlocked()) {
+                                BlockedFields[gonethrough] = fields.get(x + "_" + y).getName();
+                            }
                             // If move is not possible (blocked by a piece), stop in this direction
                             break;
                         }
@@ -62,6 +70,7 @@ public class Queen extends Piece {
                         break;
                     }
                 }
+                gonethrough++;
             }
         }
         this.LastFieldsMap = fields;
@@ -171,6 +180,11 @@ public class Queen extends Piece {
         
             // The move is valid
             return true;
+        }
+
+        public String[] getBlockedFields() {
+            this.getMoves(LastFieldsMap, chessBoard);
+            return BlockedFields;
         }
         
             

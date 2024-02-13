@@ -10,6 +10,8 @@ import pr.herobrine.chess.Piece;
 
 public class Bishop extends Piece {
 
+    private String BlockedFields[] = new String[4];
+
     public Bishop(int locX, int locY, String name, boolean isWhite, ChessBoard chessBoard, FieldSpace currentField) {
         this.isQueen = true;
         this.locX = locX;
@@ -29,12 +31,15 @@ public class Bishop extends Piece {
     }
 
     public String[] getMoves(Map<String, FieldSpace> fields, ChessBoard chessBoard, boolean ONLYFORKING) {
+        this.BlockedFields = new String[4];
         ArrayList<String> possibleMoves = new ArrayList<>();
     
         if (this.currentField != null) {
             // Directions: horizontal, vertical, and diagonal
             int[][] directions = {{-1, -1}, {1, -1}, {-1, 1}, {1, 1}};
     
+            int gonethrough = 0;
+
             for (int[] dir : directions) {
                 int stepX = dir[0];
                 int stepY = dir[1];
@@ -54,6 +59,9 @@ public class Bishop extends Piece {
                                 break;
                             }
                         } else {
+                            if (fields.containsKey(x + "_" + y) && fields.get(x + "_" + y).isFieldBlocked()) {
+                                BlockedFields[gonethrough] = fields.get(x + "_" + y).getName();
+                            }
                             // If move is not possible (blocked by a piece), stop in this direction
                             break;
                         }
@@ -62,6 +70,8 @@ public class Bishop extends Piece {
                         break;
                     }
                 }
+
+                gonethrough++;
             }
         }
         this.LastFieldsMap = fields;
@@ -172,6 +182,10 @@ public class Bishop extends Piece {
             return true;
         }
         
+        public String[] getBlockedFields() {
+            this.getMoves(LastFieldsMap, chessBoard);
+            return BlockedFields;
+        }
             
     }
   

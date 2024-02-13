@@ -115,12 +115,24 @@ public class Piece implements java.io.Serializable{
 
                         if (fields.get(i+"_"+j).getCurrentPieceOnField().isQueen()) {
                             // Missing Check if King is Attacked after throwing out another Piece
+                            String[] blocked = fields.get(i+"_"+j).getCurrentPieceOnField().getBlockedFields();
+                            if (blocked != null && blocked.length > 0) {
+                                Collections.addAll(AttackedFields, blocked);
+                            }
                         }
                         if (fields.get(i+"_"+j).getCurrentPieceOnField().isBishop()) {
                             // Missing Check if King is Attacked after throwing out another Piece
+                            String[] blocked = fields.get(i+"_"+j).getCurrentPieceOnField().getBlockedFields();
+                            if (blocked != null && blocked.length > 0) {
+                                Collections.addAll(AttackedFields, blocked);
+                            }
                         }
                         if (fields.get(i+"_"+j).getCurrentPieceOnField().isRook()) {
                             // Missing Check if King is Attacked after throwing out another Piece
+                            String[] blocked = fields.get(i+"_"+j).getCurrentPieceOnField().getBlockedFields();
+                            if (blocked != null && blocked.length > 0) {
+                                Collections.addAll(AttackedFields, blocked);
+                            }
                         }
 
                         Collections.addAll(AttackedFields, attackedBythis);
@@ -142,6 +154,10 @@ public class Piece implements java.io.Serializable{
         } else {
             return false;
         }
+    }
+
+    public String[] getBlockedFields() {
+        return null;
     }
     
 }
