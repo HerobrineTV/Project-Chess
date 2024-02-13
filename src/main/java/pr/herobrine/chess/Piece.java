@@ -1,5 +1,7 @@
 package pr.herobrine.chess;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
@@ -91,6 +93,8 @@ public class Piece implements java.io.Serializable{
         if (piece.isKing()) {
             Boolean KingFound = false;
 
+            ArrayList<String> AttackedFields = new ArrayList<>();
+
             if (fields.get(x+"_"+y) != null && fields.get(x+"_"+y).getCurrentPieceOnField() != null && fields.get(x+"_"+y).getCurrentPieceOnField().isKing() && fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
             if (fields.get(x+"_"+(y+1)) != null && fields.get(x+"_"+(y+1)).getCurrentPieceOnField() != null && fields.get(x+"_"+(y+1)).getCurrentPieceOnField().isKing() && fields.get(x+"_"+(y+1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
             if (fields.get(x+"_"+(y-1)) != null && fields.get(x+"_"+(y-1)).getCurrentPieceOnField() != null && fields.get(x+"_"+(y-1)).getCurrentPieceOnField().isKing() && fields.get(x+"_"+(y-1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
@@ -101,7 +105,30 @@ public class Piece implements java.io.Serializable{
             if (fields.get(x-1+"_"+(y+1)) != null && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField() != null && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField().isKing() && fields.get(x-1+"_"+(y+1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
             if (fields.get(x-1+"_"+(y-1)) != null && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField() != null && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField().isKing() && fields.get(x-1+"_"+(y-1)).getCurrentPieceOnField().isWhite() != this.isWhite()) KingFound = true;
 
-            return !fields.get(x + "_" + y).isFieldBlocked() || ((fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite()) && !KingFound);
+            for (int i = 0; i < chessBoard.getSizeX(); i++) {
+                for (int j = 0; j < chessBoard.getSizeY(); j++) {
+                    if (fields.get(i+"_"+j) != null && fields.get(i+"_"+j).getCurrentPieceOnField() != null) {
+
+                        if (fields.get(i+"_"+j).getCurrentPieceOnField().isKing()) continue;
+
+                        String[] attackedBythis = fields.get(i+"_"+j).getCurrentPieceOnField().getMoves(fields, chessBoard);
+
+                        if (fields.get(i+"_"+j).getCurrentPieceOnField().isQueen()) {
+                            // Missing Check if King is Attacked after throwing out another Piece
+                        }
+                        if (fields.get(i+"_"+j).getCurrentPieceOnField().isBishop()) {
+                            // Missing Check if King is Attacked after throwing out another Piece
+                        }
+                        if (fields.get(i+"_"+j).getCurrentPieceOnField().isRook()) {
+                            // Missing Check if King is Attacked after throwing out another Piece
+                        }
+
+                        Collections.addAll(AttackedFields, attackedBythis);
+                    }
+                }
+            }
+
+            return !fields.get(x + "_" + y).isFieldBlocked() || ((fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite()) && !KingFound && !AttackedFields.contains(x + "_" + y));
         } else {
             return !fields.get(x + "_" + y).isFieldBlocked() || fields.get(x + "_" + y).getCurrentPieceOnField().isWhite() != this.isWhite();
         }
