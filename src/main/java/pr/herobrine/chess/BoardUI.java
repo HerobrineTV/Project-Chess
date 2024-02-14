@@ -100,7 +100,7 @@ public class BoardUI extends JFrame {
                                     for (int i2 = 0; i2 < Moves.length; i2++) {
                                         if (jlabels.get(Moves[i2]) == jlabels.get(label.getName())) {
                                             CurrentSelectedPiece.move(fields.get(label.getName()), chessBoard, BoardUI);
-                                            //System.out.println("Wright Field Name");
+                                            //System.out.println("Right Field Name");
                                         } else {
                                             //System.out.println("Wrong Field Name: "+label.getName()+" got "+Moves[i2]);
                                         }
@@ -159,7 +159,7 @@ public class BoardUI extends JFrame {
         setTitle("Board Game [Map: "+chessBoard.getBoardName()+"] [Turn: "+chessBoard.getTurnNumber()+"] "+chessBoard.getCurrentTurn()+"'s Turn!");
 
         
-        if (chessBoard.getBlackFiguresLeft() == 0 || chessBoard.getWhiteFiguresLeft() == 0 || chessBoard.getWhiteKingsLeft() == 0 || chessBoard.getBlackKingsLeft() == 0) {
+        if (chessBoard.getBlackFiguresLeft() <= 0 || chessBoard.getWhiteFiguresLeft() <= 0 || chessBoard.getWhiteKingsLeft() <= 0 || chessBoard.getBlackKingsLeft() <= 0) {
             String Winner = "";
             if (chessBoard.getBlackFiguresLeft() == 0) {
                 Winner = "White";
