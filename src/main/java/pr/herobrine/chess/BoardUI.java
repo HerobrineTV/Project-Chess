@@ -121,16 +121,13 @@ public class BoardUI extends JFrame {
                         }
                     }
                 });
-    
-                // Check if there's a piece on this field and set its image
+
                 if (space.getCurrentPieceOnField() != null) {
                     ImageIcon originalIcon = space.getCurrentPieceOnField().getImageIcon();
         
-                    // Resize the icon to fit the label
+                    // Resize the icon to fit the label and assign it to the label
                     Image resizedImage = originalIcon.getImage().getScaledInstance(labelWidth, labelHeight, Image.SCALE_SMOOTH);
                     ImageIcon resizedIcon = new ImageIcon(resizedImage);
-        
-                    // Set the resized icon to the label
                     label.setIcon(resizedIcon);
                 }
 
@@ -141,20 +138,15 @@ public class BoardUI extends JFrame {
     }
 
     public void updatePieceLocation(String oldField, String newField) {
-        // Get the JLabels for the old and new fields
         CurrentSelectedPiece = null;
 
         JLabel oldLabel = jlabels.get(oldField);
         JLabel newLabel = jlabels.get(newField);
 
-        //System.out.println(oldLabel+" "+newLabel);
-
-        // Move the icon from the old label to the new label
+        // Move the Piece Icon
         if (oldLabel != null && newLabel != null) {
             newLabel.setIcon(oldLabel.getIcon());
             oldLabel.setIcon(null);
-
-            //System.out.println("HELP");
         }
         setTitle("Board Game [Map: "+chessBoard.getBoardName()+"] [Turn: "+chessBoard.getTurnNumber()+"] "+chessBoard.getCurrentTurn()+"'s Turn!");
 
