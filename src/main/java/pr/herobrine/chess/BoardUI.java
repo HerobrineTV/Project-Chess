@@ -161,13 +161,13 @@ public class BoardUI extends JFrame {
         
         if (chessBoard.getBlackFiguresLeft() <= 0 || chessBoard.getWhiteFiguresLeft() <= 0 || chessBoard.getWhiteKingsLeft() <= 0 || chessBoard.getBlackKingsLeft() <= 0) {
             String Winner = "";
-            if (chessBoard.getBlackFiguresLeft() == 0) {
+            if (chessBoard.getBlackFiguresLeft() <= 0) {
                 Winner = "White";
-            } else if (chessBoard.getWhiteFiguresLeft() == 0) {
+            } else if (chessBoard.getWhiteFiguresLeft() <= 0) {
                 Winner = "Black";
-            } else if (chessBoard.getWhiteKingsLeft() == 0) {
+            } else if (chessBoard.getWhiteKingsLeft() <= 0) {
                 Winner = "Black";
-            } else if (chessBoard.getBlackKingsLeft() == 0) {
+            } else if (chessBoard.getBlackKingsLeft() <= 0) {
                 Winner = "White";
             }
 
