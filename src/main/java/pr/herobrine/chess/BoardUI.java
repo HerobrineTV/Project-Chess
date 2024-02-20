@@ -57,8 +57,8 @@ public class BoardUI extends JFrame {
                 } else {
                     label.setBackground(Color.DARK_GRAY);
                 }
-
-                // Add Interaction Ability 
+ 
+                // Add Click Listener Interaction to the labels
                 label.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent e) {
